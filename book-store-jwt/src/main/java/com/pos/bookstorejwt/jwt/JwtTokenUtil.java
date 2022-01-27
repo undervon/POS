@@ -19,7 +19,7 @@ import java.util.UUID;
 @Component
 public class JwtTokenUtil {
 
-    public static final long JWT_TOKEN_VALIDITY = 3 * 60 * 1000;          // 3 minute
+    public static final long JWT_TOKEN_VALIDITY = 3 * 60 * 1000;          // 3 minutes
 
     @Value("${jwt.secret}")
     private String secret;
