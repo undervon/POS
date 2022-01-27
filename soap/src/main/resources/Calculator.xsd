@@ -13,7 +13,7 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="addRseponse">
+    <xs:element name="addResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="result" type="xs:decimal" />

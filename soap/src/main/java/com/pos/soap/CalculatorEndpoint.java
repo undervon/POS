@@ -14,7 +14,6 @@ import soap.pos.com.calculator.DivisionResponse;
 import soap.pos.com.calculator.MultiplicationRequest;
 import soap.pos.com.calculator.MultiplicationResponse;
 
-
 @Endpoint
 @Log4j2
 public class CalculatorEndpoint {
@@ -24,7 +23,7 @@ public class CalculatorEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addRequest")
     @ResponsePayload
     public AddResponse add(@RequestPayload AddRequest addRequest) {
-        log.info("add");
+        log.info("[{}] -> add", this.getClass().getSimpleName());
 
         AddResponse addResponse = new AddResponse();
 
@@ -36,7 +35,7 @@ public class CalculatorEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "decreasedRequest")
     @ResponsePayload
     public DecreasedResponse decreased(@RequestPayload DecreasedRequest decreasedRequest) {
-        log.info("decreased");
+        log.info("[{}] -> decreased", this.getClass().getSimpleName());
 
         DecreasedResponse decreasedResponse = new DecreasedResponse();
 
@@ -48,7 +47,7 @@ public class CalculatorEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "multiplicationRequest")
     @ResponsePayload
     public MultiplicationResponse multiplication(@RequestPayload MultiplicationRequest multiplicationRequest) {
-        log.info("multiplication");
+        log.info("[{}] -> multiplication", this.getClass().getSimpleName());
 
         MultiplicationResponse multiplicationResponse = new MultiplicationResponse();
 
@@ -60,7 +59,7 @@ public class CalculatorEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "divisionRequest")
     @ResponsePayload
     public DivisionResponse division(@RequestPayload DivisionRequest divisionRequest) {
-        log.info("division");
+        log.info("[{}] -> division", this.getClass().getSimpleName());
 
         DivisionResponse divisionResponse = new DivisionResponse();
 
