@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://com.pos.soap/Calculator"
+           xmlns:tnx="http://com.pos.soap/Calculator"
+           elementFormDefault="qualified">
+
+    <xs:element name="addRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="param1" type="xs:decimal" />
+                <xs:element name="param2" type="xs:decimal" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addRseponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="result" type="xs:decimal" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="decreasedRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="param1" type="xs:decimal" />
+                <xs:element name="param2" type="xs:decimal" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="decreasedResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="result" type="xs:decimal" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="multiplicationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="param1" type="xs:decimal" />
+                <xs:element name="param2" type="xs:decimal" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="multiplicationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="result" type="xs:decimal" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="divisionRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="param1" type="xs:decimal" />
+                <xs:element name="param2" type="xs:decimal" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="divisionResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="result" type="xs:decimal" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
