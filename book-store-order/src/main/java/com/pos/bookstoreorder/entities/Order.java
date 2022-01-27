@@ -21,6 +21,7 @@ public class Order {
 
     @Id
     private String id;
+
     private LocalDateTime date;
     private List<Book> items;
     private Status status;

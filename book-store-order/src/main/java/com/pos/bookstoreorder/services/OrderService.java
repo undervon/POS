@@ -63,19 +63,16 @@ public class OrderService {
         for (Book book : books) {
             URI uri;
             try {
-                uri = new URI(String.format("http://localhost:8080/api/1.0/bookcollection/books/%s", book.getIsbn()));
+                uri = new URI(String.format("http://localhost:8089/api/1.0/bookcollection/books/%s", book.getIsbn()));
             } catch (URISyntaxException uriSyntaxException) {
                 log.error(uriSyntaxException.getMessage());
                 throw new RuntimeException(uriSyntaxException.getMessage());
             }
 
-            // preluare obiect book de la adresa uri expusa de endpoint
             Object bookObject = restTemplate.getForObject(uri, Object.class);
 
-            // serializare obiect book in format JSON
             JSONObject bookJsonObject = new JSONObject(new Gson().toJson(bookObject));
 
-            // verificare daca stocul de carti din book este >= cu stocul cerut in body
             if (bookJsonObject.getInt("stock") >= book.getQuantity()) {
                 JSONObject newBookJsonObject = new JSONObject();
 
