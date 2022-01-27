@@ -32,7 +32,7 @@ public class BookAuthorController {
     @CrossOrigin
     @GetMapping(path = "/books/{isbn}/authors", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BookAuthorDTO> getBooksAuthors(@PathVariable String isbn) {
-        log.info(String.format("getBooksAuthors, isbn: %s", isbn));
+        log.info("[{}] -> GET, getBooksAuthors, ISBN: {}", this.getClass().getSimpleName(), isbn);
 
         return ResponseEntity.status(HttpStatus.OK).body(bookAuthorService.getBooksAuthors(isbn));
     }
@@ -40,7 +40,7 @@ public class BookAuthorController {
     @CrossOrigin
     @GetMapping(path = "/books/authors", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<BookAuthorDTO>> getAllBooksAuthors() {
-        log.info("getAllBooksAuthors");
+        log.info("[{}] -> GET, getAllBooksAuthors", this.getClass().getSimpleName());
 
         return ResponseEntity.status(HttpStatus.OK).body(bookAuthorService.getAllBooksAuthors());
     }
@@ -48,7 +48,7 @@ public class BookAuthorController {
     @CrossOrigin
     @DeleteMapping(path = "/books/{isbn}/authors", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteBooksAuthors(@PathVariable String isbn) {
-        log.info(String.format("deleteBookAuthor, isbn: %s", isbn));
+        log.info("[{}] -> DELETE, deleteBooksAuthors, ISBN: {}", this.getClass().getSimpleName(), isbn);
 
         bookAuthorService.deleteBooksAuthors(isbn);
 
@@ -58,7 +58,7 @@ public class BookAuthorController {
     @CrossOrigin
     @PostMapping(path = "/books/authors", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BookAuthorDTO> postBooksAuthors(@Valid @RequestBody BookAuthorDTO bookAuthorDTO) {
-        log.info("postBooksAuthors");
+        log.info("[{}] -> POST, postBooksAuthors, bookAuthor: {}", this.getClass().getSimpleName(), bookAuthorDTO);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(bookAuthorService.postBooksAuthors(bookAuthorDTO));
     }
@@ -67,7 +67,8 @@ public class BookAuthorController {
     @PutMapping(path = "/books/{isbn}/authors", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> putBooksAuthors(@PathVariable String isbn,
             @Valid @RequestBody AuthorIdIndexDTO authorIdIndexDTO) {
-        log.info(String.format("putBooksAuthors, isbn: %s", isbn));
+        log.info("[{}] -> PUT, putBooksAuthors, isbn: {}, authorIdIndex: {}", this.getClass().getSimpleName(),
+                authorIdIndexDTO, isbn);
 
         bookAuthorService.putBooksAuthors(isbn, authorIdIndexDTO);
 

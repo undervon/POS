@@ -11,7 +11,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Component
-public class BookVerboseAssambler implements RepresentationModelAssembler<BookVerboseDTO, EntityModel<BookVerboseDTO>> {
+public class BookVerboseAssembler implements RepresentationModelAssembler<BookVerboseDTO, EntityModel<BookVerboseDTO>> {
 
     @Override
     public @NotNull EntityModel<BookVerboseDTO> toModel(@NotNull BookVerboseDTO bookVerbose) {

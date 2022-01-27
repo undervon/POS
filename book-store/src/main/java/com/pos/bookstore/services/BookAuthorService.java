@@ -16,9 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Log4j2
 @Service
 @RequiredArgsConstructor
-@Log4j2
 public class BookAuthorService {
 
     private final BookAuthorRepository bookAuthorRepository;
@@ -34,7 +34,7 @@ public class BookAuthorService {
     }
 
     public BookAuthorDTO getBooksAuthors(String isbn) {
-        log.info("getBooksAuthors");
+        log.info("[{}] -> getBooksAuthors, ISBN: {}", this.getClass().getSimpleName(), isbn);
 
         return BookAuthorDTO.builder()
                 .isbn(isbn)
@@ -46,7 +46,7 @@ public class BookAuthorService {
     }
 
     public List<BookAuthorDTO> getAllBooksAuthors() {
-        log.info("getAllBooksAuthors");
+        log.info("[{}] -> getAllBooksAuthors", this.getClass().getSimpleName());
 
         return bookAuthorRepository.findAll().stream()
                 .map(this::bookAuthorToBookAuthorDTO)
@@ -55,14 +55,14 @@ public class BookAuthorService {
 
     @Transactional
     public void deleteBooksAuthors(String isbn) {
-        log.info("deleteBooksAuthors");
+        log.info("[{}] -> deleteBooksAuthors, ISBN: {}", this.getClass().getSimpleName(), isbn);
 
         bookAuthorRepository.deleteBookAuthorsByBook_Isbn(isbn);
     }
 
     @Transactional
     public BookAuthorDTO postBooksAuthors(BookAuthorDTO bookAuthorDTO) {
-        log.info("postBooksAuthors");
+        log.info("[{}] -> postBooksAuthors, bookAuthor: {}", this.getClass().getSimpleName(), bookAuthorDTO);
 
         BookAuthor bookAuthor = BookAuthor.builder()
                 .id(new BookAuthorId())
@@ -80,7 +80,8 @@ public class BookAuthorService {
 
     @Transactional
     public void putBooksAuthors(String isbn, AuthorIdIndexDTO authorIdIndexDTO) {
-        log.info("putBooksAuthors");
+        log.info("[{}] -> putBooksAuthors, isbn: {}, authorIdIndex: {}", this.getClass().getSimpleName(),
+                isbn, authorIdIndexDTO);
 
         BookAuthor initialBookAuthor =
                 bookAuthorRepository.findFirstByBookIsbn(isbn).orElseThrow(() -> new BookNotFoundException(isbn));

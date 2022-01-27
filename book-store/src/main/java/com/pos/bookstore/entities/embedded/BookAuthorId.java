@@ -10,10 +10,10 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
 @Embeddable
+@NoArgsConstructor
+@AllArgsConstructor
 public class BookAuthorId implements Serializable {
 
     @Column(name = "book_isbn")

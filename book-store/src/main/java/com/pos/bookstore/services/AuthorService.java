@@ -16,9 +16,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Log4j2
 @Service
 @RequiredArgsConstructor
-@Log4j2
 public class AuthorService {
 
     private final AuthorRepository authorRepository;
@@ -43,7 +43,7 @@ public class AuthorService {
     }
 
     public List<AuthorDTO> getAllAuthors() {
-        log.info("getAllAuthors");
+        log.info("[{}] -> getAllAuthors", this.getClass().getSimpleName());
 
         List<Author> authors = authorRepository.findAll();
 
@@ -53,7 +53,7 @@ public class AuthorService {
     }
 
     public AuthorDTO getAuthorById(Long id) {
-        log.info(String.format("getAuthorById, isbn: %s", id.toString()));
+        log.info("[{}] -> getAllAuthors, id: {}", this.getClass().getSimpleName(), id);
 
         Author author = authorRepository.findById(id)
                 .orElseThrow(() -> new AuthorNotFoundException(id.toString()));
@@ -62,7 +62,7 @@ public class AuthorService {
     }
 
     public void deleteAuthorById(Long id) {
-        log.info(String.format("deleteAuthorById, id: %s", id.toString()));
+        log.info("[{}] -> deleteAuthorById, id: {}", this.getClass().getSimpleName(), id);
 
         authorRepository.findById(id)
                 .orElseThrow(() -> new AuthorNotFoundException(id.toString()));
@@ -72,7 +72,7 @@ public class AuthorService {
 
     @Transactional
     public AuthorDTO createNewAuthor(AuthorDTO newAuthorDTO) {
-        log.info(String.format("createNewAuthor, newAuthor: %s", newAuthorDTO.toString()));
+        log.info("[{}] -> createNewAuthor, newAuthor: {}", this.getClass().getSimpleName(), newAuthorDTO);
 
         Author author = Author.builder()
                 .firstName(newAuthorDTO.getFirstName())
@@ -85,7 +85,8 @@ public class AuthorService {
 
     @Transactional
     public void updateAuthor(AuthorDTO newAuthorDTO, Long id) {
-        log.info(String.format("updateAuthor, id: %s", id.toString()));
+        log.info("[{}] -> updateAuthor, newAuthor: {}, id: {}", this.getClass().getSimpleName(),
+                newAuthorDTO, id);
 
         Optional<Author> optionalAuthor = authorRepository.findById(id);
 
@@ -102,7 +103,8 @@ public class AuthorService {
     }
 
     public List<AuthorDTO> getAllAuthorsByNameExact(Optional<String> name, Optional<String> match) {
-        log.info("getAllAuthorsByNameExact");
+        log.info("[{}] -> getAllAuthorsByNameExact, name: {}, match: {}", this.getClass().getSimpleName(),
+                name, match);
 
         List<Author> authors;
 
@@ -129,7 +131,7 @@ public class AuthorService {
     }
 
     public List<AuthorDTO> getAllAuthorsByName(Optional<String> name) {
-        log.info("getAllAuthorsByNameExact");
+        log.info("[{}] -> getAllAuthorsByName, name: {}", this.getClass().getSimpleName(), name);
 
         List<Author> newAuthors;
 

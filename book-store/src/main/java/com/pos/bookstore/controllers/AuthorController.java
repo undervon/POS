@@ -43,7 +43,7 @@ public class AuthorController {
     @CrossOrigin
     @GetMapping(path = "/authors", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CollectionModel<EntityModel<AuthorDTO>>> getAllAuthors() {
-        log.info("getAllAuthors, get request");
+        log.info("[{}] -> GET, getAllAuthors", this.getClass().getSimpleName());
 
         return ResponseEntity.status(HttpStatus.OK).body(CollectionModel.of(authorService.getAllAuthors().stream()
                         .map(authorAssembler::toModel)
@@ -56,7 +56,8 @@ public class AuthorController {
     public ResponseEntity<CollectionModel<EntityModel<AuthorDTO>>> getAllAuthorsByNameExact(
             @RequestParam(value = "name", required = false) Optional<String> name,
             @RequestParam(value = "match", required = false) Optional<String> match) {
-        log.info("getAllAuthorsByNameExact, get request");
+        log.info("[{}] -> GET, getAllAuthorsByNameExact, name: {}, match: {}", this.getClass().getSimpleName(),
+                name, match);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(CollectionModel.of(authorService.getAllAuthorsByNameExact(name, match).stream()
@@ -69,7 +70,7 @@ public class AuthorController {
     @GetMapping(path = "/authors", produces = MediaType.APPLICATION_JSON_VALUE, params = "name")
     public ResponseEntity<CollectionModel<EntityModel<AuthorDTO>>> getAllAuthorsByName(
             @RequestParam(value = "name", required = false) Optional<String> name) {
-        log.info("getAllAuthorsByName, get request");
+        log.info("[{}] -> GET, getAllAuthorsByName, name: {}", this.getClass().getSimpleName(), name);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(CollectionModel.of(authorService.getAllAuthorsByName(name).stream()
@@ -81,7 +82,7 @@ public class AuthorController {
     @CrossOrigin
     @GetMapping(path = "/authors/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<EntityModel<AuthorDTO>> getAuthorById(@PathVariable Long id) {
-        log.info(String.format("getAuthorById, get request, id: %s", id.toString()));
+        log.info("[{}] -> GET, getAuthorById, id: {}", this.getClass().getSimpleName(), id);
 
         return ResponseEntity.status(HttpStatus.OK).body(authorAssembler.toModel(authorService.getAuthorById(id)));
     }
@@ -89,7 +90,7 @@ public class AuthorController {
     @CrossOrigin
     @DeleteMapping(path = "/authors/{id}")
     public ResponseEntity<Author> deleteAuthorById(@PathVariable Long id) {
-        log.info(String.format("deleteAuthorById, delete request, id: %s", id.toString()));
+        log.info("[{}] -> DELETE, deleteAuthorById, id: {}", this.getClass().getSimpleName(), id);
 
         authorService.deleteAuthorById(id);
 
@@ -99,7 +100,7 @@ public class AuthorController {
     @CrossOrigin
     @PostMapping(path = "/authors", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<EntityModel<AuthorDTO>> createNewAuthor(@Valid @RequestBody AuthorDTO newAuthorDTO) {
-        log.info(String.format("createNewAuthor, post request, author: %s", newAuthorDTO.toString()));
+        log.info("[{}] -> POST, createNewAuthor, newAuthor: {}", this.getClass().getSimpleName(), newAuthorDTO);
 
         EntityModel<AuthorDTO> authorEntityModel = authorAssembler.toModel(authorService.createNewAuthor(newAuthorDTO));
 
@@ -111,7 +112,8 @@ public class AuthorController {
     @PutMapping(path = "/authors/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<EntityModel<AuthorDTO>> updateAuthor(@Valid @RequestBody AuthorDTO newAuthorDTO,
             @PathVariable Long id) {
-        log.info(String.format("updateAuthor, put request, id: %s", id.toString()));
+        log.info("[{}] -> PUT, updateAuthor, newAuthor: {}, id: {}", this.getClass().getSimpleName(),
+                newAuthorDTO, id);
 
         authorService.updateAuthor(newAuthorDTO, id);
 

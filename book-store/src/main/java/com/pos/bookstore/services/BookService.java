@@ -20,10 +20,10 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Service
-@RequiredArgsConstructor
-@Validated
 @Log4j2
+@Service
+@Validated
+@RequiredArgsConstructor
 public class BookService {
 
     private final BookRepository bookRepository;
@@ -56,7 +56,7 @@ public class BookService {
     }
 
     public List<BookDTO> getAllBooks() {
-        log.info("getAllBooks");
+        log.info("[{}] -> getAllBooks", this.getClass().getSimpleName());
 
         List<Book> books = bookRepository.findAll();
 
@@ -66,7 +66,7 @@ public class BookService {
     }
 
     public BookDTO getBookByIsbn(String isbn) {
-        log.info(String.format("getBookByIsbn, isbn: %s", isbn));
+        log.info("[{}] -> getBookByIsbn, ISBN: {}", this.getClass().getSimpleName(), isbn);
 
         Book book = bookRepository.findById(isbn)
                 .orElseThrow(() -> new BookNotFoundException(isbn));
@@ -75,7 +75,7 @@ public class BookService {
     }
 
     public void deleteBookByIsbn(String isbn) {
-        log.info(String.format("deleteBookByIsbn, isbn: %s", isbn));
+        log.info("[{}] -> deleteBookByIsbn, ISBN: {}", this.getClass().getSimpleName(), isbn);
 
         bookRepository.findById(isbn)
                 .orElseThrow(() -> new BookNotFoundException(isbn));
@@ -83,42 +83,10 @@ public class BookService {
         bookRepository.deleteById(isbn);
     }
 
-//    @Validated(OnUpdate.class)
-//    @Transactional
-//    public BookDTO updateBook(@Valid BookDTO newBookDTO, String isbn) {
-//        log.info(String.format("updateBook, isbn: %s", isbn));
-//
-//        Optional<Book> optionalBook = bookRepository.findById(isbn);
-//
-//        optionalBook.orElseThrow(() -> new BookNotFoundException(isbn));
-//
-//        return this.bookToBookDTO(bookRepository.save(Book.builder()
-//                .isbn(isbn)
-//                .title(newBookDTO.getTitle())
-//                .publishing(newBookDTO.getPublishing())
-//                .publicationYear(newBookDTO.getPublicationYear())
-//                .genre(newBookDTO.getGenre())
-//                .bookAuthorList(optionalBook.get().getBookAuthorList())
-//                .build()));
-//    }
-//
-//    @Transactional
-//    public BookDTO createBook(BookDTO newBookDTO) {
-//        log.info(String.format("createBook, book: %s", newBookDTO.toString()));
-//
-//        return this.bookToBookDTO(bookRepository.save(Book.builder()
-//                .isbn(newBookDTO.getIsbn())
-//                .title(newBookDTO.getTitle())
-//                .publishing(newBookDTO.getPublishing())
-//                .publicationYear(newBookDTO.getPublicationYear())
-//                .genre(newBookDTO.getGenre())
-//                .bookAuthorList(new ArrayList<>())
-//                .build()));
-//    }
-
     @Transactional
     public BookDTO createOrUpdateBook(BookDTO newBookDTO, String isbn) {
-        log.info(String.format("createOrUpdateBook, isbn: %s", isbn));
+        log.info("[{}] -> createOrUpdateBook, newBook: {}, ISBN: {}", this.getClass().getSimpleName(),
+                newBookDTO, isbn);
 
         Optional<Book> optionalBook = bookRepository.findById(isbn);
 
@@ -152,7 +120,8 @@ public class BookService {
     }
 
     public List<BookDTO> getAllBooksByPage(Optional<String> page, Optional<String> itemsPerPage) {
-        log.info("getAllBooksByPage");
+        log.info("[{}] -> getAllBooksByPage, page: {}, itemsPerPage: {}", this.getClass().getSimpleName(),
+                page, itemsPerPage);
 
         List<Book> books = bookRepository.findAll();
         List<BookDTO> bookDTOS = new ArrayList<>();
@@ -180,7 +149,8 @@ public class BookService {
     }
 
     public List<BookDTO> getAllBooksByGenreAndYear(Optional<String> genre, Optional<String> year) {
-        log.info("getAllBooksByGenreAndYear");
+        log.info("[{}] -> getAllBooksByGenreAndYear, genre: {}, year: {}", this.getClass().getSimpleName(),
+                genre, year);
 
         List<Book> books;
 
@@ -203,7 +173,7 @@ public class BookService {
     }
 
     public List<BookDTO> getAllBooksByGenre(Optional<String> genre) {
-        log.info("getAllBooksByGenre");
+        log.info("[{}] -> getAllBooksByGenre, genre: {}", this.getClass().getSimpleName(), genre);
 
         List<Book> books;
 
@@ -221,7 +191,7 @@ public class BookService {
     }
 
     public List<BookDTO> getAllBooksByYear(Optional<String> year) {
-        log.info("getAllBooksByYear");
+        log.info("[{}] -> getAllBooksByYear, year: {}", this.getClass().getSimpleName(), year);
 
         List<Book> books;
 
@@ -239,7 +209,8 @@ public class BookService {
     }
 
     public BookVerboseDTO getBookByIsbnVerbose(String isbn, Optional<String> verbose) {
-        log.info(String.format("getBookByIsbnVerbose, isbn: %s, verbose: %s", isbn, verbose));
+        log.info("[{}] -> getBookByIsbnVerbose, ISBN: {}, verbose: {}", this.getClass().getSimpleName(),
+                isbn, verbose);
 
         Book book = bookRepository.findById(isbn)
                 .orElseThrow(() -> new BookNotFoundException(isbn));
