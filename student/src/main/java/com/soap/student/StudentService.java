@@ -14,35 +14,36 @@ public class StudentService {
     private final StudentRepository studentRepository;
 
     public Student getStudentById(long id) {
-        log.info("getStudentById");
+        log.info("[{}] -> getStudentById", this.getClass().getSimpleName());
 
         return studentRepository.getStudentById(id);
     }
 
     public List<Student> getAllStudents() {
-        log.info("getAllStudents");
+        log.info("[{}] -> getAllStudents", this.getClass().getSimpleName());
 
         return studentRepository.findAll();
     }
 
     public boolean addNewStudent(Student student) {
-        log.info("addNewStudent");
+        log.info("[{}] -> addNewStudent", this.getClass().getSimpleName());
 
         if (studentRepository.findByNameAndAge(student.getName(), student.getAge()).isEmpty()) {
             studentRepository.save(student);
             return true;
         }
+
         return false;
     }
 
     public void updateStudent(Student student) {
-        log.info("updateStudent");
+        log.info("[{}] -> updateStudent", this.getClass().getSimpleName());
 
         studentRepository.save(student);
     }
 
     public void deleteStudentById(Student student) {
-        log.info("deleteStudentById");
+        log.info("[{}] -> deleteStudentById", this.getClass().getSimpleName());
 
         studentRepository.delete(student);
     }

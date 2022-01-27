@@ -9,5 +9,6 @@ import java.util.List;
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
     Student getStudentById(Long id);
+
     List<Student> findByNameAndAge(String name, Integer age);
 }

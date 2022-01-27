@@ -35,7 +35,7 @@ public class StudentEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getStudentByIdRequest")
     @ResponsePayload
     public GetStudentByIdResponse getStudentById(@RequestPayload GetStudentByIdRequest getStudentByIdRequest) {
-        log.info(String.format("call getStudentById, id: %s", getStudentByIdRequest.getId()));
+        log.info("[{}] -> getStudentById, id: {}", this.getClass().getSimpleName(), getStudentByIdRequest.getId());
 
         GetStudentByIdResponse getStudentByIdResponse = new GetStudentByIdResponse();
         StudentInfo studentInfo = new StudentInfo();
@@ -52,7 +52,7 @@ public class StudentEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAllStudentsRequest")
     @ResponsePayload
     public GetAllStudentsResponse getAllStudents() {
-        log.info("call getAllStudents");
+        log.info("[{}] -> getAllStudents", this.getClass().getSimpleName());
 
         GetAllStudentsResponse getAllStudentsResponse = new GetAllStudentsResponse();
         List<StudentInfo> studentInfoList;
@@ -75,7 +75,7 @@ public class StudentEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "postStudentRequest")
     @ResponsePayload
     public PostStudentResponse addNewStudent(@RequestPayload PostStudentRequest postStudentRequest) {
-        log.info("call addNewStudent");
+        log.info("[{}] -> addNewStudent", this.getClass().getSimpleName());
 
         PostStudentResponse postStudentResponse = new PostStudentResponse();
         ServiceStatus serviceStatus = new ServiceStatus();
@@ -105,7 +105,7 @@ public class StudentEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "putStudentRequest")
     @ResponsePayload
     public PutStudentResponse updateStudent(@RequestPayload PutStudentRequest putStudentRequest) {
-        log.info("call updateStudent");
+        log.info("[{}] -> updateStudent", this.getClass().getSimpleName());
 
         PutStudentResponse putStudentResponse = new PutStudentResponse();
         ServiceStatus serviceStatus = new ServiceStatus();
@@ -131,7 +131,7 @@ public class StudentEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteStudentRequest")
     @ResponsePayload
     public DeleteStudentResponse deleteStudentById(@RequestPayload DeleteStudentRequest deleteStudentRequest) {
-        log.info(String.format("call deleteStudentById, id: %s", deleteStudentRequest.getId()));
+        log.info("[{}] -> deleteStudentById, id: {}", this.getClass().getSimpleName(), deleteStudentRequest.getId());
 
         DeleteStudentResponse deleteStudentResponse = new DeleteStudentResponse();
         ServiceStatus serviceStatus = new ServiceStatus();
