@@ -1,6 +1,7 @@
 package com.pos.bookstorejwt.config;
 
 import com.pos.bookstorejwt.jwt.JwtTokenFilter;
+import com.pos.bookstorejwt.repository.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -50,16 +51,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                 authException.getMessage()))
                 .and();
 
-        http.exceptionHandling()
-                .authenticationEntryPoint(
-                        (request, response, authException) -> response.sendError(HttpServletResponse.SC_FORBIDDEN,
-                                authException.getMessage()))
-                .and();
-
         http.authorizeRequests()
                 .antMatchers("/login/**").permitAll()
                 .antMatchers("/register/**").permitAll()
                 .antMatchers("/token/**").permitAll()
+                // Private endpoints
+                .antMatchers("/addUser/**").permitAll()
+                .antMatchers("/deleteUser/**").permitAll()
+                .antMatchers("/editPasswordUser/**").permitAll()
+                .antMatchers("/editRoleUser/**").permitAll()
+//                .antMatchers("/addUser/**").hasRole(Role.ADMIN.toString())
+//                .antMatchers("/deleteUser/**").hasRole(Role.ADMIN.toString())
+//                .antMatchers("/editRoleUser/**").hasRole(Role.ADMIN.toString())
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);

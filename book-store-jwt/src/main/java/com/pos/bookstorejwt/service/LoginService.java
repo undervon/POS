@@ -20,9 +20,11 @@ public class LoginService {
     public LoginResponse login(LoginRequest loginRequest) {
         log.info("[{}] -> login", this.getClass().getSimpleName());
 
-        User user = userService.findByUsername(loginRequest.getUsername());
+        String username = loginRequest.getUsername();
 
-//        userService.checkPassword(loginRequest.getUsername(), loginRequest.getPassword());
+        User user = userService.findByUsername(username);
+
+        userService.checkPassword(username, loginRequest.getPassword());
 
         String token = jwtTokenUtil.generateToken(user);
 

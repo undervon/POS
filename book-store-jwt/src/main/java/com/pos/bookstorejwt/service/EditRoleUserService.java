@@ -1,7 +1,8 @@
 package com.pos.bookstorejwt.service;
 
-import bookstorejwt.pos.com.editpassworduser.EditPasswordUserRequest;
+import bookstorejwt.pos.com.editroleuser.EditRoleUserRequest;
 import bookstorejwt.pos.com.editroleuser.EditRoleUserResponse;
+import com.pos.bookstorejwt.repository.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -11,11 +12,17 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class EditRoleUserService {
 
-    public EditRoleUserResponse editRoleUser(EditPasswordUserRequest editRoleUserRequest) {
+    private final UserService userService;
+
+    public EditRoleUserResponse editRoleUser(EditRoleUserRequest editRoleUserRequest) {
         log.info("[{}] -> editRoleUser", this.getClass().getSimpleName());
 
+        String username = editRoleUserRequest.getUsername();
+
+        userService.editRoleUser(username, editRoleUserRequest.getNewRole());
+
         EditRoleUserResponse editRoleUserResponse = new EditRoleUserResponse();
-        editRoleUserResponse.setResponse("");
+        editRoleUserResponse.setResponse(String.format("Rolul userului %s editat cu succes", username));
 
         return editRoleUserResponse;
     }

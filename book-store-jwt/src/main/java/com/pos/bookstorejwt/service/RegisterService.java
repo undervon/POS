@@ -18,7 +18,7 @@ public class RegisterService {
     public RegisterResponse register(RegisterRequest registerRequest) {
         log.info("[{}] -> register", this.getClass().getSimpleName());
 
-        User user = userService.createNewUser(registerRequest.getUsername(), registerRequest.getPassword());
+        User user = userService.registerNewUser(registerRequest.getUsername(), registerRequest.getPassword());
 
         RegisterResponse registerResponse = new RegisterResponse();
         registerResponse.setResponse(String.format("User-ul %s a fost creat cu succes", user.getUsername()));

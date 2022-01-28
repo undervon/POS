@@ -1,6 +1,6 @@
 package com.pos.bookstorejwt.controller;
 
-import bookstorejwt.pos.com.editpassworduser.EditPasswordUserRequest;
+import bookstorejwt.pos.com.editroleuser.EditRoleUserRequest;
 import bookstorejwt.pos.com.editroleuser.EditRoleUserResponse;
 import com.pos.bookstorejwt.service.EditRoleUserService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class EditRoleUserController {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "editRoleUserRequest")
     @ResponsePayload
-    public EditRoleUserResponse editRoleUser(@RequestPayload EditPasswordUserRequest editRoleUserRequest) {
+    public EditRoleUserResponse editRoleUser(@RequestPayload EditRoleUserRequest editRoleUserRequest) {
         log.info("[{}] -> editRoleUser", this.getClass().getSimpleName());
 
         return editRoleUserService.editRoleUser(editRoleUserRequest);

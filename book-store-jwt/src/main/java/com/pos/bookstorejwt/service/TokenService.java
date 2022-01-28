@@ -40,7 +40,8 @@ public class TokenService {
         String username = jwtTokenUtil.getUsernameFromToken(token);
         Role role = jwtTokenUtil.getRoleFromToken(token);
 
-        userService.checkByUsername(username);
+        // Check user by username if exist in DB
+        userService.findByUsername(username);
 
         ValidateTokenResponse validateTokenResponse = new ValidateTokenResponse();
         validateTokenResponse.setUsername(username);
