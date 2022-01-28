@@ -32,7 +32,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         }
 
         final String token = header.substring(7);
-        if (!jwtTokenUtil.isTokenExpired(token)) {
+        if (jwtTokenUtil.isTokenExpired(token)) {
             chain.doFilter(request, response);
             return;
         }
