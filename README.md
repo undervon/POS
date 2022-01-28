@@ -1,5 +1,5 @@
 # POS
-Bookstore Web Application - Service oriented programming <br /><br />
+Bookstore Web Application - Service oriented programming (Programare orientata pe servicii) <br /><br />
 
 Server side (back-end: Spring Boot, Spring Security, Spring HATEOAS, Spring Data JPA and Spring Data MongoDB):<br />
 
