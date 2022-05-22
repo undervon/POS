@@ -12,3 +12,7 @@ student -> API, using SOAP and MySQL expose CRUD functionality. <br /><br />
 Client side (front-end: (JavaScript) React): <br />
 
 bookstore -> Application using React and Node.js Web Server.
+
+---
+
+Materie: POS - Programare orientata pe servicii
