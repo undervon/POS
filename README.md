@@ -2,13 +2,13 @@
 Bookstore Web Application - Service oriented programming <br /><br />
 
 Server side (back-end)
-    * Java 11
-    * Spring Framework
-        - Spring Boot
-        - Spring Security
-        - Spring HATEOAS
-        - Spring Data JPA
-        - Spring Data MongoDB
+* Java 11
+* Spring Framework
+   * Spring Boot
+   * Spring Security
+   * Spring HATEOAS
+   * Spring Data JPA
+   * Spring Data MongoDB
 
 <ul>
     <li>book-store-jwt -> API, using SOAP and MySQL expose JWT, Authentication and Authorizations functionality;</li>
@@ -19,8 +19,8 @@ Server side (back-end)
 </ul>
 
 Client side (front-end)
-    * JavaScript
-    * React.js (React)
+* JavaScript
+* React.js (React)
 
 <ul>
     <li>bookstore -> Application using React.js and Node.js Web Server.</li>
