@@ -10,6 +10,7 @@ Server side (back-end)
    * Spring Data JPA
    * Spring Data MongoDB
 
+####Functionality:
 <ul>
     <li>book-store-jwt -> API, using SOAP and MySQL expose JWT, Authentication and Authorizations functionality;</li>
     <li>book-store-order -> API, using RESTfull and MongoDB expose order functionality;</li>
@@ -22,6 +23,7 @@ Client side (front-end)
 * JavaScript
 * React.js (React)
 
+####Functionality:
 <ul>
     <li>bookstore -> Application using React.js and Node.js Web Server.</li>
 </ul>
